@@ -1,0 +1,13 @@
+.python-version
+.idea/
+*.pyc
+__pycache__/
+.venv
+venv
+.DS_Store
+
+logs/*
+!logs/.gitkeep
+
+conf/*
+!conf/.gitkeep

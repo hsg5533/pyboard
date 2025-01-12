@@ -71,8 +71,16 @@
 
     <!-- 댓글 작성폼 -->
     <form method="post" action="/reply_insert/">
-      {% csrf_token %}
+      {% csrf_token %} {% if request.user.is_authenticated %}
+      <input
+        name="writer"
+        placeholder="이름"
+        value="{{user.username}}"
+        readonly
+      /><br />
+      {% else %}
       <input name="writer" placeholder="이름" /><br />
+      {% endif %}
       <textarea
         rows="5"
         cols="80"

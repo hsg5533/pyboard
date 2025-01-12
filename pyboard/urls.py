@@ -27,10 +27,6 @@ urlpatterns = [
     path('logout/',views.logout),
     
     path('',views.home),
-    path('movie_save/',views.movie_save),
-    path('chart/',views.chart),
-    path('wordcloud/',views.wordcloud),
-    path('cctv_map/', views.cctv_map),
     
     path('list/',views.list),
     path('write/', views.write),

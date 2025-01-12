@@ -1,15 +1,11 @@
 from django.shortcuts import render,redirect
-from board.models import Board, Comment, Movie
+from board.models import Board, Comment
 from django.views.decorators.csrf import csrf_exempt
 import os
 import math
 from django.db.models import Q
-#from django.utils.http import urlquote
 from django.http.response import HttpResponse, HttpResponseRedirect
-from board import BigdataPro
 from django.db.models.aggregates import Avg
-import pandas as pd
-import numpy as np
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -78,22 +74,6 @@ def movie_save(request):
         dto=Movie(title=row[0],point=row[1],content=row[2])
         dto.save()
     return redirect('/')
-
-def chart(request):
-    data=Movie.objects.values('title').annotate(point_avg=Avg('point')).order_by('point_avg')[50:60]
-    df=pd.DataFrame(data)
-    BigdataPro.makeGraph(df.title, df.point_avg)
-    return render(request,'bigdata_pro/chart.html',{'data':data})
-
-def wordcloud(request):
-    content=Movie.objects.values('content')
-    df=pd.DataFrame(content)
-    BigdataPro.makeWordCloud(df.content)
-    return render(request,'bigdata_pro/wordcloud.html',{'content':df.content})
-
-def cctv_map(request):
-    BigdataPro.cctv_map()
-    return render(request,'map/map01.html')
 
 @csrf_exempt
 def list(request):
