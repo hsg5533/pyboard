@@ -80,8 +80,7 @@
         <td colspan="7" align="center">
           {% if start_page >= block_size %}
           <a href="/list/?start={{prev_list}}">[이전]</a>
-          {% endif %} {% autoescape off %} {% for link in links %} {{link}} {%
-          endfor %} {% endautoescape %} {% if end_page < total_page %}
+          {% endif %} {% autoescape off %} {% for link in links %} {{link}} {% endfor %} {% endautoescape %} {% if end_page < total_page %}
           <a href="/list/?start={{next_list}}">[다음]</a>
           {% endif %}
         </td>
